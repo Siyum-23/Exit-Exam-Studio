@@ -534,7 +534,7 @@ export function ExamClient({ dataset }: { dataset: ExamDataset }) {
             })}
           </div>
           {filteredIndices.length > QUESTION_PAGE_SIZE && (
-            <div className="mt-4 flex items-center justify-between text-xs text-black/60">
+            <div className="mt-4 flex items-center justify-between text-xs text-black/60 dark:text-white/50">
               <button
                 type="button"
                 className="hover:text-brand-primary"
@@ -565,12 +565,12 @@ export function ExamClient({ dataset }: { dataset: ExamDataset }) {
         <div className="flex items-center justify-between lg:hidden">
           <button
             type="button"
-            className="rounded-xl border border-black/10 px-3 py-2 text-xs font-semibold"
+            className="rounded-xl border border-black/10 px-3 py-2 text-xs font-semibold dark:border-white/10"
             onClick={() => setMobileMapOpen((prev) => !prev)}
           >
             {mobileMapOpen ? "Hide map" : "Show map"}
           </button>
-          <span className="text-xs text-black/60">Answered {answeredCount}</span>
+          <span className="text-xs text-black/60 dark:text-white/50">Answered {answeredCount}</span>
         </div>
 
         {timerWarning && (
@@ -582,17 +582,17 @@ export function ExamClient({ dataset }: { dataset: ExamDataset }) {
         {reviewAttempt && (
           <div className="rounded-xl border border-brand-accent/40 bg-brand-accent/20 p-4 text-sm">
             <p className="font-semibold text-brand-primaryDark">Review mode</p>
-            <p className="mt-1 text-black/70">
+            <p className="mt-1 text-black/70 dark:text-white/60">
               Attempt {reviewAttempt.attemptId} · {reviewAttempt.correctCount}/{reviewAttempt.totalQuestions} ({reviewAttempt.percent}%)
             </p>
           </div>
         )}
         <div className="flex flex-col gap-3">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold uppercase tracking-wide text-black/50">
+            <span className="text-xs font-semibold uppercase tracking-wide text-black/50 dark:text-white/40">
               Question {currentIndex + 1} of {totalQuestions}
             </span>
-            <span className="text-xs text-black/60">{Math.round(progressValue * 100)}% complete</span>
+            <span className="text-xs text-black/60 dark:text-white/50">{Math.round(progressValue * 100)}% complete</span>
           </div>
           <Progress value={progressValue * 100} />
         </div>
@@ -610,15 +610,15 @@ export function ExamClient({ dataset }: { dataset: ExamDataset }) {
                   ? "border-brand-success bg-brand-success/10"
                   : selected
                   ? "border-brand-error bg-brand-error/10"
-                  : "border-black/10"
-                : "border-black/10";
+                  : "border-black/10 dark:border-white/10"
+                : "border-black/10 dark:border-white/10";
 
               return (
                 <button
                   key={option.key}
                   type="button"
                   className={cn(
-                    "flex w-full items-start gap-3 rounded-xl border px-4 py-3 text-left text-sm transition",
+                    "flex w-full items-start gap-3 rounded-xl border px-4 py-3 text-left text-sm transition hover:border-brand-primary/30 dark:hover:border-brand-primary/40",
                     feedbackClass
                   )}
                   onClick={() => {
@@ -627,7 +627,7 @@ export function ExamClient({ dataset }: { dataset: ExamDataset }) {
                     }
                   }}
                 >
-                  <span className={cn("mt-1 flex h-4 w-4 items-center justify-center rounded-full border text-[10px]", selected ? "border-brand-primary bg-brand-primary text-white" : "border-black/20")}>
+                  <span className={cn("mt-1 flex h-4 w-4 items-center justify-center rounded-full border text-[10px]", selected ? "border-brand-primary bg-brand-primary text-white" : "border-black/20 dark:border-white/20")}>
                     {String.fromCharCode(65 + idx)}
                   </span>
                   <RichContent blocks={option.blocks} />
@@ -642,15 +642,15 @@ export function ExamClient({ dataset }: { dataset: ExamDataset }) {
                 {isCorrect ? "Correct" : "Incorrect"}
               </p>
               {question.explanation && (
-                <p className="mt-2 text-black/70">{question.explanation}</p>
+                <p className="mt-2 text-black/70 dark:text-white/60">{question.explanation}</p>
               )}
             </div>
           )}
 
           {showResults && mode === "test" && question.explanation && (
-            <div className="rounded-xl border border-black/10 bg-white/80 p-4 text-sm">
+            <div className="rounded-xl border border-black/10 bg-white/80 p-4 text-sm dark:border-white/10 dark:bg-white/5">
               <p className="font-semibold text-brand-primaryDark">Explanation</p>
-              <p className="mt-2 text-black/70">{question.explanation}</p>
+              <p className="mt-2 text-black/70 dark:text-white/60">{question.explanation}</p>
             </div>
           )}
         </div>
@@ -701,20 +701,20 @@ export function ExamClient({ dataset }: { dataset: ExamDataset }) {
         <div className="panel p-4 text-sm">
           <h2 className="text-sm font-semibold text-brand-primaryDark">Progress</h2>
           <div className="mt-2 space-y-2">
-            <div className="flex justify-between text-black/60">
+            <div className="flex justify-between text-black/60 dark:text-white/50">
               <span>Answered</span>
-              <span className="font-medium">{answeredCount} / {totalQuestions}</span>
+              <span className="font-medium text-brand-primaryDark">{answeredCount} / {totalQuestions}</span>
             </div>
-            <div className="flex justify-between text-black/60">
+            <div className="flex justify-between text-black/60 dark:text-white/50">
               <span>Flagged</span>
-              <span className="font-medium">{flaggedCount}</span>
+              <span className="font-medium text-brand-primaryDark">{flaggedCount}</span>
             </div>
-            <div className="flex justify-between text-black/60">
+            <div className="flex justify-between text-black/60 dark:text-white/50">
               <span>Unanswered</span>
-              <span className="font-medium">{totalQuestions - answeredCount}</span>
+              <span className="font-medium text-brand-primaryDark">{totalQuestions - answeredCount}</span>
             </div>
           </div>
-          <div className="mt-3 pt-3 border-t border-black/10">
+          <div className="mt-3 pt-3 border-t border-black/10 dark:border-white/10">
             <ElapsedTimer elapsedSec={elapsedSec} />
           </div>
         </div>
@@ -722,11 +722,11 @@ export function ExamClient({ dataset }: { dataset: ExamDataset }) {
         {showResults && (
           <div className="panel p-4 text-sm">
             <h2 className="text-sm font-semibold text-brand-primaryDark">Results</h2>
-            <p className="mt-2 text-black/60">
+            <p className="mt-2 text-black/60 dark:text-white/50">
               Score: {attemptResult ? `${attemptResult.correct} / ${attemptResult.total}` : `0 / ${totalQuestions}`}
             </p>
             {attemptResult && (
-              <p className="mt-1 text-xs text-black/60">Percent: {attemptResult.percent}%</p>
+              <p className="mt-1 text-xs text-black/60 dark:text-white/50">Percent: {attemptResult.percent}%</p>
             )}
           </div>
         )}
@@ -736,7 +736,7 @@ export function ExamClient({ dataset }: { dataset: ExamDataset }) {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
           <div className="panel w-full max-w-md p-6">
             <h2 className="text-lg font-semibold text-brand-primaryDark">Resume your session?</h2>
-            <p className="mt-2 text-sm text-black/70">
+            <p className="mt-2 text-sm text-black/70 dark:text-white/60">
               We found an in-progress session for this exam. Would you like to resume or start over?
             </p>
             <div className="mt-4 flex gap-3">
@@ -753,7 +753,7 @@ export function ExamClient({ dataset }: { dataset: ExamDataset }) {
 
       {mobileMapOpen && (
         <div className="fixed inset-0 z-40 flex items-end bg-black/40 lg:hidden">
-          <div className="w-full rounded-t-3xl bg-white p-6">
+          <div className="w-full max-h-[80vh] overflow-y-auto rounded-t-3xl bg-white p-6 dark:bg-[#1c1109]">
             <div className="flex items-center justify-between">
               <h2 className="text-sm font-semibold text-brand-primaryDark">Question Map</h2>
               <button
