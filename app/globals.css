@@ -12,6 +12,16 @@
   --color-error: #d7263d;
 }
 
+.dark {
+  --color-primary: #c87d55;
+  --color-primary-dark: #f0d4b4;
+  --color-accent: #f4c95d;
+  --color-bg: #160e08;
+  --color-text: #ede5d8;
+  --color-success: #52b788;
+  --color-error: #e06c75;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -60,6 +70,13 @@ select:focus-visible {
     linear-gradient(160deg, #fdfaf4 0%, #f6efe0 100%);
 }
 
+.dark .page-bg {
+  background:
+    radial-gradient(circle at 10% 10%, rgba(200, 125, 85, 0.12), transparent 45%),
+    radial-gradient(circle at 85% 15%, rgba(244, 201, 93, 0.06), transparent 40%),
+    linear-gradient(160deg, #1c1109 0%, #130c06 100%);
+}
+
 .page-section {
   padding: 2.5rem 1.5rem 4rem;
 }
@@ -77,6 +94,26 @@ select:focus-visible {
       transparent 14px
     ),
     linear-gradient(145deg, #fdfaf4 0%, #f6efe0 100%);
+}
+
+.dark .hero-bg {
+  background:
+    radial-gradient(circle at 20% 18%, rgba(244, 201, 93, 0.1), transparent 48%),
+    radial-gradient(circle at 75% 25%, rgba(200, 125, 85, 0.14), transparent 45%),
+    radial-gradient(circle at 60% 78%, rgba(120, 70, 40, 0.1), transparent 40%),
+    repeating-linear-gradient(
+      120deg,
+      rgba(200, 125, 85, 0.05) 0px,
+      rgba(200, 125, 85, 0.05) 1px,
+      transparent 1px,
+      transparent 14px
+    ),
+    linear-gradient(145deg, #1c1109 0%, #130c06 100%);
+}
+
+.dark .panel {
+  border-color: rgba(255, 255, 255, 0.08);
+  background-color: rgba(255, 255, 255, 0.04);
 }
 
 .panel {

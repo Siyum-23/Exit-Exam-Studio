@@ -124,11 +124,12 @@ export default async function ExamPage({ params }: { params: Promise<{ examId: s
           subtitle={`${dataset.meta.playableQuestionCount} questions`}
           backHref={`/departments/${dataset.meta.departmentSlug}`}
           backLabel={dataset.meta.departmentName}
+          hideBackOnMobile
         />
         <section className="page-section">
           <Suspense
             fallback={
-              <div className="mx-auto max-w-5xl rounded-3xl border border-black/10 bg-white/70 p-6 text-sm text-black/60">
+              <div className="mx-auto max-w-5xl rounded-3xl border border-black/10 bg-white/70 p-6 text-sm text-black/60 dark:border-white/10 dark:bg-white/5 dark:text-white/50">
                 Loading the exam interface...
               </div>
             }

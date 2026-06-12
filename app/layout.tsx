@@ -6,6 +6,10 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SiteJsonLd } from "@/components/seo/site-jsonld";
 import { absoluteUrl, siteConfig } from "@/lib/seo/site";
+import { BottomNav } from "@/components/ui/bottom-nav";
+import { AppDrawer } from "@/components/ui/app-drawer";
+import { ThemeProvider } from "@/components/providers/theme-provider";
+import { LanguageProvider } from "@/lib/i18n/context";
 import Script from "next/script";
 
 const fraunces = Fraunces({
@@ -71,12 +75,22 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-ET" className={`${fraunces.variable} ${manrope.variable}`}>
-      <body className="page-shell relative">
-        {children}
-        <SiteJsonLd />
-        <Analytics />
-        <SpeedInsights />
+    <html lang="en-ET" className={`${fraunces.variable} ${manrope.variable}`} suppressHydrationWarning>
+      {/* Blocks theme flash before React hydrates */}
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: `(function(){var t=localStorage.getItem('exit-theme');var d=t==='dark'||(t!=='light'&&window.matchMedia('(prefers-color-scheme:dark)').matches);if(d)document.documentElement.classList.add('dark')})()` }} />
+      </head>
+      <body className="page-shell relative pb-16 md:pb-0">
+        <ThemeProvider>
+          <LanguageProvider>
+            {children}
+            <SiteJsonLd />
+            <Analytics />
+            <SpeedInsights />
+            <AppDrawer />
+            <BottomNav />
+          </LanguageProvider>
+        </ThemeProvider>
       </body>
       <Script src="https://scripts.simpleanalyticscdn.com/latest.js" />
     </html>
