@@ -25,6 +25,7 @@ export function HistoryPageClient() {
           subtitle="Review your previous attempts and keep improving."
           backHref="/departments"
           backLabel="Departments"
+          hideBackOnMobile
         />
 
         <section className="page-section mx-auto max-w-6xl">
@@ -32,14 +33,14 @@ export function HistoryPageClient() {
             {history.map((attempt) => (
               <div
                 key={attempt.attemptId}
-                className="rounded-3xl border border-black/10 bg-white/70 p-6 md:flex md:items-center md:justify-between"
+                className="rounded-3xl border border-black/10 bg-white/70 p-6 md:flex md:items-center md:justify-between dark:border-white/10 dark:bg-white/5"
               >
                 <div>
                   <h2 className="text-lg font-semibold text-brand-primaryDark">
                     {attempt.departmentName} · {attempt.displayYear}{" "}
                     {attempt.variant === "model" ? "Model" : ""}
                   </h2>
-                  <p className="mt-1 text-sm text-black/60">
+                  <p className="mt-1 text-sm text-black/60 dark:text-white/50">
                     {attempt.mode.toUpperCase()} · {formatDateTime(attempt.completedAt)} ·{" "}
                     {formatDuration(attempt.durationSec)}
                   </p>
@@ -60,7 +61,7 @@ export function HistoryPageClient() {
           </div>
 
           {history.length === 0 && (
-            <p className="mt-8 text-sm text-black/60">No attempts yet. Start practicing!</p>
+            <p className="mt-8 text-sm text-black/60 dark:text-white/50">No attempts yet. Start practicing!</p>
           )}
         </section>
       </main>
