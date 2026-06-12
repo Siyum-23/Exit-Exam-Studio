@@ -30,7 +30,8 @@ const schemaVersion = 1;
 
 function readQuestionFiles(): string[] {
   if (!fs.existsSync(QUESTIONS_ROOT)) {
-    throw new Error("Questions folder not found.");
+    console.warn("Questions folder not found. Skipping normalization step as it relies on pre-generated data.");
+    return [];
   }
 
   const files: string[] = [];
@@ -175,6 +176,12 @@ function normalizeReactNode(
   const tag = typeof node.type === "string" ? node.type : "div";
   const props = node.props ?? {};
 
+  if (tag === "Component") {
+    // Interactive controls (e.g. "Hide Table" toggle buttons) lose their
+    // behavior once serialized to static JSON, so drop them entirely.
+    return [];
+  }
+
   if (tag === "img") {
     const src = normalizeText(props.src);
     const { src: normalizedSrc } = resolveImage(src);
@@ -290,6 +297,11 @@ function copyImages() {
 }
 
 function main() {
+  if (!fs.existsSync(QUESTIONS_ROOT)) {
+    console.warn("Questions folder not found. Skipping normalization step to preserve pre-generated data.");
+    return;
+  }
+
   ensureDir(EXAMS_DIR);
   ensureDir(REPORTS_DIR);
 
