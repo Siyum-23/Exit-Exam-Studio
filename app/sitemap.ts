@@ -3,6 +3,8 @@ import type { MetadataRoute } from "next";
 import { readManifest } from "@/lib/data/generated";
 import { siteConfig } from "@/lib/seo/site";
 
+export const dynamic = "force-static";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const manifest = await readManifest();
   const baseUrl = siteConfig.url;
