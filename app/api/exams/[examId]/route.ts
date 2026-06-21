@@ -1,6 +1,13 @@
 import { NextRequest } from "next/server";
 
-import { readExamDataset } from "@/lib/data/generated";
+import { readExamDataset, readManifest } from "@/lib/data/generated";
+
+export const dynamic = "force-static";
+
+export async function generateStaticParams() {
+  const manifest = await readManifest();
+  return (manifest?.exams ?? []).map((exam) => ({ examId: exam.examId }));
+}
 
 type RouteContext = { params: Promise<{ examId: string }> };
 
