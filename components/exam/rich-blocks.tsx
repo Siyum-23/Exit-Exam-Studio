@@ -25,7 +25,7 @@ function renderBlocks(blocks: RichBlock[]): React.ReactNode {
             alt={block.alt}
             width={block.width ?? 600}
             height={block.height ?? 360}
-            className="h-auto w-full max-w-md rounded-lg border border-black/10 object-contain"
+            className="h-auto w-full max-w-md rounded-lg border border-black/10 object-contain dark:border-white/10"
           />
         </span>
       );

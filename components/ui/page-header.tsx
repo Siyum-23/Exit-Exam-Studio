@@ -10,6 +10,7 @@ type PageHeaderProps = {
   backHref?: string;
   backLabel?: string;
   className?: string;
+  hideBackOnMobile?: boolean;
 };
 
 export function PageHeader({
@@ -19,14 +20,18 @@ export function PageHeader({
   backHref,
   backLabel = "Back",
   className,
+  hideBackOnMobile = false,
 }: PageHeaderProps) {
   return (
     <header className={cn("mx-auto flex w-full max-w-6xl flex-col gap-4 px-6 pt-10", className)}>
-      <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-black/60">
+      <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-black/60 dark:text-white/50">
         {backHref ? (
           <Link
             href={backHref}
-            className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-3 py-1 font-semibold text-brand-primary transition hover:-translate-y-0.5 hover:border-brand-primary/40"
+            className={cn(
+              "items-center gap-2 rounded-full border border-black/10 bg-white/70 px-3 py-1 font-semibold text-brand-primary transition hover:-translate-y-0.5 hover:border-brand-primary/40 dark:border-white/10 dark:bg-white/8",
+              hideBackOnMobile ? "hidden md:inline-flex" : "inline-flex"
+            )}
           >
             <span className="text-base">←</span>
             {backLabel}
@@ -41,9 +46,9 @@ export function PageHeader({
           </div>
         )}
       </div>
-      <div className="border-b border-black/10 pb-6">
+      <div className="border-b border-black/10 pb-6 dark:border-white/10">
         <h1 className="font-display text-3xl text-brand-primaryDark md:text-4xl">{title}</h1>
-        {subtitle && <p className="mt-2 max-w-2xl text-sm text-black/60">{subtitle}</p>}
+        {subtitle && <p className="mt-2 max-w-2xl text-sm text-black/60 dark:text-white/50">{subtitle}</p>}
       </div>
     </header>
   );

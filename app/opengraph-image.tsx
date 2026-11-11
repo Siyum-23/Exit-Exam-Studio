@@ -2,6 +2,8 @@ import { ImageResponse } from "next/og";
 
 import { readManifest } from "@/lib/data/generated";
 
+export const dynamic = "force-static";
+
 export const size = {
   width: 1200,
   height: 630,

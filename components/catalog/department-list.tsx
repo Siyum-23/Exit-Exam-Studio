@@ -27,10 +27,11 @@ export function DepartmentList({ departments }: { departments: DepartmentMeta[] 
           subtitle="Choose your department and explore past exam sets. Clean, fast, and 100% free."
           backHref="/"
           backLabel="Home"
+          hideBackOnMobile
         />
         <section className="page-section mx-auto max-w-6xl">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <div className="max-w-md text-sm text-black/60">
+            <div className="max-w-md text-sm text-black/60 dark:text-white/50">
               {filtered.length} departments · {departments.length} total
             </div>
             <div className="w-full md:max-w-sm">
@@ -48,23 +49,23 @@ export function DepartmentList({ departments }: { departments: DepartmentMeta[] 
               <Link
                 key={dept.slug}
                 href={`/departments/${dept.slug}`}
-                className="group rounded-3xl border border-black/10 bg-white/70 p-6 transition hover:-translate-y-1 hover:border-brand-primary/30 hover:shadow-[0_30px_80px_-50px_rgba(78,47,32,0.5)]"
+                className="group rounded-3xl border border-black/10 bg-white/70 p-6 transition hover:-translate-y-1 hover:border-brand-primary/30 hover:shadow-[0_30px_80px_-50px_rgba(78,47,32,0.5)] dark:border-white/10 dark:bg-white/5 dark:hover:border-brand-primary/40 dark:hover:shadow-[0_30px_80px_-50px_rgba(0,0,0,0.6)]"
               >
                 <div className="flex items-center justify-between">
                   <h2 className="text-lg font-semibold text-brand-primaryDark">{dept.name}</h2>
                   <span className="text-xs font-semibold text-brand-primary/70">{dept.examCount} exams</span>
                 </div>
-                <p className="mt-2 text-sm text-black/60">
+                <p className="mt-2 text-sm text-black/60 dark:text-white/50">
                   {dept.totalPlayableQuestions} playable questions
                 </p>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {dept.years.slice(0, 4).map((year) => (
-                    <Pill key={year} className="border-brand-primary/30 bg-white/70 text-brand-primary">
+                    <Pill key={year} className="border-brand-primary/30 bg-white/70 text-brand-primary dark:bg-white/5">
                       {year}
                     </Pill>
                   ))}
                   {dept.years.length > 4 && (
-                    <Pill className="border-black/10 bg-white/60 text-black/70">
+                    <Pill className="border-black/10 bg-white/60 text-black/70 dark:border-white/10 dark:bg-white/5 dark:text-white/50">
                       +{dept.years.length - 4} more
                     </Pill>
                   )}
@@ -74,7 +75,7 @@ export function DepartmentList({ departments }: { departments: DepartmentMeta[] 
           </div>
 
           {filtered.length === 0 && (
-            <p className="mt-8 text-sm text-black/60">No departments match that search.</p>
+            <p className="mt-8 text-sm text-black/60 dark:text-white/50">No departments match that search.</p>
           )}
         </section>
       </main>

@@ -126,6 +126,7 @@ export default async function DepartmentPage({
           subtitle={`${department.examCount} exams · ${department.totalPlayableQuestions} playable questions`}
           backHref="/departments"
           backLabel="All departments"
+          hideBackOnMobile
         />
 
         <section className="page-section mx-auto max-w-6xl">
