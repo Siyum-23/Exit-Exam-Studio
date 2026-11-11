@@ -1,5 +1,7 @@
 import { readManifest } from "@/lib/data/generated";
 
+export const dynamic = "force-static";
+
 export async function GET() {
   const manifest = await readManifest();
 

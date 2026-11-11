@@ -1,26 +1,27 @@
 import type { MetadataRoute } from "next";
 
 import { readManifest } from "@/lib/data/generated";
-import { siteConfig } from "@/lib/seo/site";
+import { absoluteUrl } from "@/lib/seo/site";
+
+export const dynamic = "force-static";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const manifest = await readManifest();
-  const baseUrl = siteConfig.url;
   const lastModified = manifest ? new Date(manifest.generatedAt) : new Date();
 
   const examEntries = (manifest?.exams ?? []).map((exam) => ({
-    url: `${baseUrl}/exam/${exam.examId}`,
+    url: absoluteUrl(`/exam/${exam.examId}`),
     lastModified,
   }));
 
   const departmentEntries = (manifest?.departments ?? []).map((dept) => ({
-    url: `${baseUrl}/departments/${dept.slug}`,
+    url: absoluteUrl(`/departments/${dept.slug}`),
     lastModified,
   }));
 
   return [
-    { url: baseUrl, lastModified },
-    { url: `${baseUrl}/departments`, lastModified },
+    { url: absoluteUrl("/"), lastModified },
+    { url: absoluteUrl("/departments"), lastModified },
     ...departmentEntries,
     ...examEntries,
   ];

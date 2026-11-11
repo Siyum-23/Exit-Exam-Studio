@@ -65,18 +65,21 @@ select:focus-visible {
 }
 
 .hero-bg {
+  --color-primary: #2563c7;
+  --color-primary-dark: #173c70;
+  --color-bg: #f3f8ff;
   background:
-    radial-gradient(circle at 20% 18%, rgba(244, 201, 93, 0.35), transparent 48%),
-    radial-gradient(circle at 75% 25%, rgba(107, 62, 38, 0.26), transparent 45%),
-    radial-gradient(circle at 60% 78%, rgba(78, 47, 32, 0.18), transparent 40%),
+    radial-gradient(circle at 20% 18%, rgba(244, 201, 93, 0.28), transparent 48%),
+    radial-gradient(circle at 75% 25%, rgba(37, 99, 199, 0.24), transparent 45%),
+    radial-gradient(circle at 60% 78%, rgba(23, 60, 112, 0.14), transparent 40%),
     repeating-linear-gradient(
       120deg,
-      rgba(107, 62, 38, 0.08) 0px,
-      rgba(107, 62, 38, 0.08) 1px,
+      rgba(37, 99, 199, 0.06) 0px,
+      rgba(37, 99, 199, 0.06) 1px,
       transparent 1px,
       transparent 14px
     ),
-    linear-gradient(145deg, #fdfaf4 0%, #f6efe0 100%);
+    linear-gradient(145deg, #f8fbff 0%, #e9f2ff 100%);
 }
 
 .panel {

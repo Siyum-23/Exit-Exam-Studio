@@ -21,7 +21,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
+  metadataBase: new URL(absoluteUrl("/")),
   applicationName: siteConfig.name,
   title: {
     default: siteConfig.name,
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   keywords: [...siteConfig.keywords],
   alternates: {
-    canonical: "/",
+    canonical: absoluteUrl("/"),
   },
   category: "education",
   referrer: "origin-when-cross-origin",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     type: "website",
-    url: siteConfig.url,
+    url: absoluteUrl("/"),
     siteName: siteConfig.name,
     locale: siteConfig.locale,
     images: [

@@ -1,8 +1,3 @@
-import Link from "next/link";
-
-import type { DepartmentMeta, Manifest } from "@/lib/exam/types";
-import { Pill } from "@/components/ui/pill";
-
 const faqItems = [
   {
     question: "Is this Ethiopian exit exam practice platform free?",
@@ -25,10 +20,6 @@ const faqItems = [
       "Yes. Students can use practice mode for immediate feedback or test mode for a more exam-like session.",
   },
 ];
-
-function formatNumber(value: number) {
-  return new Intl.NumberFormat("en-US").format(value);
-}
 
 export function getLandingFaqSchema() {
   return {

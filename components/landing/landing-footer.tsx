@@ -1,14 +1,17 @@
 export function LandingFooter() {
   return (
-    <footer className=" bg-transparent">
-      <div className="mx-auto ">
+    <footer className="border-t border-black/10 bg-white/50">
+      <div className="mx-auto flex max-w-6xl flex-col gap-3 px-5 py-5 text-sm text-black/60 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+        <p>
+          Optional tips under 20 Birr via Telebirr: <span className="font-semibold text-brand-primaryDark">+251914831504</span>
+        </p>
         <a
-          href="https://t.me/Abking1"
+          href="https://github.com/Siyum-23/Exit-Exam-Studio"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[15px] text-black/50 hover:text-brand-primary absolute bottom-2 right-4 "
+          className="hover:text-brand-primary"
         >
-          Made by Abuki
+          Made by Siyum
         </a>
       </div>
     </footer>

@@ -14,6 +14,8 @@ const DEFAULT_STORAGE: StorageV2 = {
   },
 };
 
+const BACKUP_FORMAT = "exit-exam-studio-backup";
+
 function isBrowser() {
   return typeof window !== "undefined";
 }
@@ -24,6 +26,10 @@ function safeParse(raw: string): StorageAny | null {
   } catch {
     return null;
   }
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
 function migrateToV2(value: StorageAny): StorageV2 {
@@ -129,4 +135,40 @@ export function updateDefaultMode(mode: "practice" | "test"): void {
 
 export function readPreferences() {
   return loadStorage().preferences;
+}
+
+export function exportStorageBackup(): string {
+  return JSON.stringify(
+    {
+      format: BACKUP_FORMAT,
+      version: 1,
+      exportedAt: new Date().toISOString(),
+      data: loadStorage(),
+    },
+    null,
+    2
+  );
+}
+
+export function importStorageBackup(raw: string): boolean {
+  let payload: unknown;
+  try {
+    payload = JSON.parse(raw) as unknown;
+  } catch {
+    return false;
+  }
+
+  if (
+    !isRecord(payload) ||
+    payload.format !== BACKUP_FORMAT ||
+    payload.version !== 1 ||
+    !isRecord(payload.data) ||
+    !isRecord(payload.data.sessions) ||
+    !Array.isArray(payload.data.history)
+  ) {
+    return false;
+  }
+
+  persistStorage(migrateToV2(payload.data as StorageAny));
+  return true;
 }

@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useEffect, useMemo, useState, useCallback } from "react";
+import { useEffect, useMemo, useState, useCallback, useEffectEvent } from "react";
 import { useSearchParams } from "next/navigation";
 
 import type { ExamDataset, ExamMode, PersistedAttempt, PersistedSession } from "@/lib/exam/types";
@@ -80,6 +80,8 @@ export function ExamClient({ dataset }: { dataset: ExamDataset }) {
   const question = playableQuestions[currentIndex];
   const totalQuestions = playableQuestions.length;
   const progressValue = totalQuestions > 0 ? (currentIndex + 1) / totalQuestions : 0;
+  const submitWhenElapsed = useEffectEvent(() => handleSubmit());
+  const toggleFlagFromKeyboard = useEffectEvent(() => toggleFlag());
 
   const hasActivity = useMemo(() => {
     return (
@@ -179,7 +181,7 @@ export function ExamClient({ dataset }: { dataset: ExamDataset }) {
     }
 
     if (elapsedSec >= timerDuration) {
-      handleSubmit();
+      submitWhenElapsed();
     }
   }, [elapsedSec, timerDuration, timerEnabled, mode, isReviewMode, showResults, examState]);
 
@@ -265,7 +267,7 @@ export function ExamClient({ dataset }: { dataset: ExamDataset }) {
           break;
         case "f":
         case "F":
-          toggleFlag();
+          toggleFlagFromKeyboard();
           break;
         case "Enter":
           if (e.ctrlKey || e.metaKey) {
@@ -472,7 +474,6 @@ export function ExamClient({ dataset }: { dataset: ExamDataset }) {
       ? isSelectionCorrect(selection, question.correctAnswers)
       : null;
 
-  const timerRemaining = Math.max(0, timerDuration - elapsedSec);
   const shouldShowConfetti =
     examState === "results" && confettiShown && !isReviewMode && viewport.width > 0 && viewport.height > 0;
   const confettiPieces = viewport.width < 768 ? 120 : 220;

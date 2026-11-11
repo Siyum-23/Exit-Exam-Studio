@@ -1,16 +1,18 @@
 import type { MetadataRoute } from "next";
-import { siteConfig } from "@/lib/seo/site";
+import { absoluteUrl, siteConfig } from "@/lib/seo/site";
+
+export const dynamic = "force-static";
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
         userAgent: "*",
-        allow: "/",
-        disallow: ["/history", "/api/"],
+        allow: `${siteConfig.basePath}/`,
+        disallow: [`${siteConfig.basePath}/history`, `${siteConfig.basePath}/api/`],
       },
     ],
     host: siteConfig.url,
-    sitemap: `${siteConfig.url}/sitemap.xml`,
+    sitemap: absoluteUrl("/sitemap.xml"),
   };
 }

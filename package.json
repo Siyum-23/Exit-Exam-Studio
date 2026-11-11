@@ -6,12 +6,13 @@
     "node": ">=20.0.0"
   },
   "scripts": {
-    "predev": "tsx scripts/normalize-questions.ts && tsx scripts/validate-generated-data.ts",
+    "predev": "tsx scripts/prepare-dev-data.ts",
+    "prepare:data": "tsx scripts/normalize-questions.ts && tsx scripts/validate-generated-data.ts",
     "dev": "next dev",
     "prebuild": "tsx scripts/normalize-questions.ts && tsx scripts/validate-generated-data.ts",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test"
@@ -36,6 +37,8 @@
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "autoprefixer": "^10.4.21",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.4.6",
     "jsdom": "^26.1.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.17",

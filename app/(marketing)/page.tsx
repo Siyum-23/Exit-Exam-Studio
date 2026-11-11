@@ -5,7 +5,7 @@ import { getLandingFaqSchema } from "@/components/landing/landing-seo-sections";
 import { StructuredData } from "@/components/seo/structured-data";
 import { LandingFooter } from "@/components/landing/landing-footer";
 import { readManifest } from "@/lib/data/generated";
-import { buildPageMetadata, siteConfig } from "@/lib/seo/site";
+import { absoluteUrl, buildPageMetadata, siteConfig } from "@/lib/seo/site";
 
 export const metadata: Metadata = {
   ...buildPageMetadata({
@@ -45,13 +45,13 @@ export default async function LandingPage() {
     "@context": "https://schema.org",
     "@type": "WebPage",
     name: "Ethiopian Exit Exam Practice Platform",
-    url: siteConfig.url,
+    url: absoluteUrl("/"),
     description:
       "Free Ethiopian exit exam practice with department pages, year-based exam sets, and realistic study tools.",
     isPartOf: {
       "@type": "WebSite",
       name: siteConfig.name,
-      url: siteConfig.url,
+      url: absoluteUrl("/"),
     },
   };
 

@@ -3,6 +3,8 @@ import React from "react";
 
 import type { RichBlock } from "@/lib/exam/types";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 function renderBlocks(blocks: RichBlock[]): React.ReactNode {
   return blocks.map((block, index) => {
     if (block.type === "text") {
@@ -21,7 +23,7 @@ function renderBlocks(blocks: RichBlock[]): React.ReactNode {
       return (
         <span key={`img-${index}`} className="my-3 block">
           <Image
-            src={block.src}
+            src={block.src.startsWith("/") ? `${basePath}${block.src}` : block.src}
             alt={block.alt}
             width={block.width ?? 600}
             height={block.height ?? 360}

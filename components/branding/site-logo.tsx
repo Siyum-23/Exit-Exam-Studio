@@ -3,6 +3,8 @@ import Link from "next/link";
 
 import { cn } from "@/lib/utils/cn";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 type SiteLogoProps = {
   className?: string;
   imageClassName?: string;
@@ -48,7 +50,7 @@ function SiteLogoInner({
         )}
       >
         <Image
-          src="/exitLogo.png"
+          src={`${basePath}/exitLogo.png`}
           alt="Ethiopian Exit Exam Studio logo"
           fill
           priority={priority}

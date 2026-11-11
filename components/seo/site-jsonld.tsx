@@ -10,20 +10,19 @@ export async function SiteJsonLd() {
       "@context": "https://schema.org",
       "@type": "Organization",
       name: siteConfig.name,
-      url: siteConfig.url,
+      url: absoluteUrl("/"),
       logo: absoluteUrl("/exitLogo.png"),
       image: absoluteUrl("/exitLogo.png"),
       description: siteConfig.description,
       sameAs: [
-        "https://github.com/abuki43/Exit-Exam-Studio",
-        "https://t.me/Abking1",
+        "https://github.com/Siyum-23/Exit-Exam-Studio",
       ],
     },
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
       name: siteConfig.name,
-      url: siteConfig.url,
+      url: absoluteUrl("/"),
       description: siteConfig.description,
       inLanguage: "en-ET",
       about: "Ethiopian university exit exam practice",
@@ -47,7 +46,7 @@ export async function SiteJsonLd() {
       isPartOf: {
         "@type": "WebSite",
         name: siteConfig.name,
-        url: siteConfig.url,
+        url: absoluteUrl("/"),
       },
     },
   ];

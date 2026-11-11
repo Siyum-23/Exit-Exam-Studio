@@ -3,7 +3,8 @@ import type { Metadata } from "next";
 export const siteConfig = {
   name: "Ethiopian Exit Exam Studio",
   shortName: "Exit Exam Studio",
-  url: "https://exitexamstudio.app",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://exitexamstudio.app",
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH?.replace(/\/+$/, "") ?? "",
   description:
     "Free Ethiopian exit exam practice with past papers, instant feedback, department-based browsing, and realistic test mode for university students.",
   locale: "en_ET",
@@ -35,7 +36,8 @@ type BuildPageMetadataOptions = {
 };
 
 export function absoluteUrl(path = "/") {
-  return new URL(path, siteConfig.url).toString();
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  return new URL(`${siteConfig.basePath}${normalizedPath}`, siteConfig.url).toString();
 }
 
 export function getFullTitle(title: string) {
@@ -59,7 +61,7 @@ export function buildPageMetadata({
     description,
     keywords: [...siteConfig.keywords, ...keywords],
     alternates: {
-      canonical,
+      canonical: absoluteUrl(canonical),
     },
     category: "education",
     openGraph: {

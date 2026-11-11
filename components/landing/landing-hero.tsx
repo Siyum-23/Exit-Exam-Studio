@@ -43,7 +43,7 @@ export function LandingHero({
       </div>
 
       <motion.a
-        href="https://github.com/abuki43/Exit-Exam-Studio"
+        href="https://github.com/Siyum-23/Exit-Exam-Studio"
         target="_blank"
         rel="noopener noreferrer"
         className="absolute right-5 top-5 z-20 inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-primaryDark shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:border-brand-primary/40 hover:bg-white/90"
@@ -100,6 +100,17 @@ export function LandingHero({
               <Link href="/departments">Get Started</Link>
             </Button>
           </motion.div>
+
+          {stats.examCount > 0 && (
+            <div
+              aria-label="Available exam content"
+              className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-brand-primaryDark"
+            >
+              <span>{formatNumber(stats.departmentCount)} departments</span>
+              <span>{formatNumber(stats.examCount)} exams</span>
+              <span>{formatNumber(stats.playableQuestionCount)} questions</span>
+            </div>
+          )}
 
           <motion.p
             className="text-xs uppercase tracking-[0.25em] text-brand-primary/60"

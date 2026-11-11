@@ -20,6 +20,7 @@ npm run dev
 ## Data Pipeline
 
 Raw question files live in `Questions/<Department>/<Year>.js`.
+The raw question sources are included in the repository. The development server can still start without them, but the department catalog will be empty; production builds require the source data.
 
 Before build/dev the normalization scripts run:
 
@@ -38,7 +39,9 @@ Generated files:
 
 ## Local Storage
 
-All progress is stored locally under the key `practice-exit-exam:storage` with versioned migration.
+Progress is automatically stored in this browser on this device under `practice-exit-exam:storage`. Browser storage can be cleared by browser settings, so use **History → Export backup** to save a portable JSON copy. **Import backup** restores that copy and replaces the current browser's saved progress. Backups are not synced between devices automatically.
+
+The footer includes an optional Telebirr tip of less than 20 Birr at `+251914831504`.
 
 ## Routes
 
@@ -50,4 +53,10 @@ All progress is stored locally under the key `practice-exit-exam:storage` with v
 
 ## Deployment
 
-No environment variables required.
+GitHub Pages builds use a static export configured for the repository path `/Exit-Exam-Studio/`.
+
+1. Push changes to the `main` branch on `Siyum-23/Exit-Exam-Studio`.
+2. In GitHub, open **Settings → Pages** and set the build source to **GitHub Actions**.
+3. The workflow at `.github/workflows/deploy-pages.yml` builds and deploys the site to `https://siyum-23.github.io/Exit-Exam-Studio/`.
+
+The build requires the `Questions/` source files. GitHub Pages is static hosting; API GET routes are emitted as static files, and browser-local progress remains on each user's device. This deployment does not change the existing `exitexamstudio.app` domain.
